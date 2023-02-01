@@ -4,31 +4,35 @@ namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class Login extends Component
 {
-    public $email = '';
+    public $nik = '';
     public $password = '';
     public $remember_me = false;
 
     protected $rules = [
-        'email' => 'required|email:rfc,dns',
+        'nik' => 'required',
         'password' => 'required',
     ];
 
     public function mount()
     {
-        $this->fill(['email' => 'admin@softui.com', 'password' => 'secret']);
+        $this->fill(['nik' => 'admin', 'password' => 'secret']);
     }
 
     public function login()
     {
-        if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
-            $user = User::where(["email" => $this->email])->first();
+        if (auth()->attempt(['nik' => $this->nik, 'password' => $this->password], $this->remember_me)) {
+            $user = User::where(["nik" => $this->nik])->first();
             auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');
+            if ($user->role !== 'karyawan')
+                return redirect()->intended('/dashboard');
+            else
+                return redirect()->intended('/karyawan');
         } else {
-            return $this->addError('email', trans('auth.failed'));
+            return $this->addError('nik', trans('auth.failed'));
         }
     }
 

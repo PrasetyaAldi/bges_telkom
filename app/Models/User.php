@@ -18,11 +18,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
+    protected $fillable = [
+        'name',
+        'nik',
+        'password',
+    ];
 
 
     protected $guarded = [];
@@ -38,11 +38,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * get the user category
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function category()
+    {
+        return $this->belongsToMany(Category::class, UserCategory::class, 'user_id', 'category_id')->withPivot('score');
+    }
 }
