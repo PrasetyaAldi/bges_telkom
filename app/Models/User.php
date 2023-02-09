@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'nik',
         'password',
+        'role',
     ];
 
 
@@ -44,6 +45,6 @@ class User extends Authenticatable
      */
     public function category()
     {
-        return $this->belongsToMany(Category::class, UserCategory::class, 'user_id', 'category_id')->withPivot('score');
+        return $this->belongsToMany(Category::class, UserCategory::class, 'user_id', 'category_id')->withTimestamps();
     }
 }

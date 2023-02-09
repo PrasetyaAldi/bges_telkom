@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('location')->nullable();
             $table->text('about')->nullable();
-            $table->string('role')->default('Karyawan');
+            $table->string('role')->default('Teknis');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Billing;
+use App\Http\Livewire\Karyawan;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\Tables;
 use App\Http\Livewire\StaticSignIn;
@@ -53,4 +54,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/virtual-reality', VirtualReality::class)->name('virtual-reality');
     Route::get('/user-profile', UserProfile::class)->name('user-profile');
     Route::get('/user-management', UserManagement::class)->name('user-management');
+    Route::get('/karyawan', Karyawan::class)->name('karyawan');
 });

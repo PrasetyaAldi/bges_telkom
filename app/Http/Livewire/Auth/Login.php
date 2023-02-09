@@ -17,17 +17,12 @@ class Login extends Component
         'password' => 'required',
     ];
 
-    public function mount()
-    {
-        $this->fill(['nik' => 'admin', 'password' => 'secret']);
-    }
-
     public function login()
     {
         if (auth()->attempt(['nik' => $this->nik, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["nik" => $this->nik])->first();
             auth()->login($user, $this->remember_me);
-            if ($user->role !== 'karyawan')
+            if ($user->role !== 'Teknis')
                 return redirect()->intended('/dashboard');
             else
                 return redirect()->intended('/karyawan');

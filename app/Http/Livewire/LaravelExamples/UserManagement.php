@@ -3,15 +3,19 @@
 namespace App\Http\Livewire\LaravelExamples;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class UserManagement extends Component
 {
     public $name;
     public $nik;
+    public $role;
+
+    public $confirmModal = false;
 
     public $users = [];
-    public $avatar = ['../assets/img/team-1.jpg', '../assets/img/team-2.jpg', '../assets/img/team-3.jpg', '../assets/img/team-4.jpg'];
+    public $avatar;
 
     /**
      * Store a newly created resource in storage.
@@ -19,15 +23,32 @@ class UserManagement extends Component
      */
     public function store()
     {
-        $dataValidate = $this->validate([
+        $this->validate([
             'name' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|unique:users,nik',
         ]);
-        User::create($dataValidate);
+
+        User::create([
+            'name' => $this->name,
+            'nik' => $this->nik,
+            'password' => Hash::make($this->nik),
+            'role' => $this->role ? 'Teknis' : 'Non Teknis',
+        ]);
         session()->flash('message', 'User successfully created.');
         $this->resetInput();
+        return redirect()->to('/user-management');
     }
 
+    public function showModal()
+    {
+        $this->confirmModal = true;
+    }
+
+    public function mount()
+    {
+        $this->avatar = ['../assets/img/team-1.jpg', '../assets/img/team-2.jpg', '../assets/img/team-3.jpg', '../assets/img/team-4.jpg'];
+        $this->users = User::all()->except(auth()->user()->id);
+    }
     /**
      * Reset Input
      */
@@ -39,7 +60,6 @@ class UserManagement extends Component
 
     public function render()
     {
-        $this->users = User::all()->except(auth()->user()->id);
         return view('livewire.laravel-examples.user-management', [
             'users' => $this->users,
             'avatar' => $this->avatar,
