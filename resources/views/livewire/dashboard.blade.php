@@ -33,7 +33,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans font-semibold leading-normal text-size-sm">Teknisi
+                                <p class="mb-0 font-sans font-semibold leading-normal text-size-sm">Employee
                                 </p>
                                 <h5 class="mb-0 font-bold">
                                     {{ $user->count() }} Orang

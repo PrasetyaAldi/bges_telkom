@@ -6,60 +6,7 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6>Kategori table</h6>
-                </div>
-                <div class="flex-auto px-0 pt-0 pb-2">
-                    <div class="p-0 overflow-x-auto">
-                        <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
-                            <thead class="align-bottom">
-                                <tr>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Nama Kategori</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Skor</th>
-                                    <th
-                                        class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($categories as $category)
-                                    <tr>
-                                        <td
-                                            class="pl-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-size-xs text-slate-400">{{ $category->name }}</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-size-xs text-slate-400">{{ $category->score }}</span>
-                                        </td>
-                                        <th
-                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        </th>
-
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- card 2 -->
-
-    <div class="flex flex-wrap -mx-3">
-        <div class="flex-none w-full max-w-full px-3">
-            <div
-                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6>Hasil Kerja Karyawan</h6>
+                    <h6>Laporan Kerja Karyawan per Hari ini</h6>
                 </div>
                 <div class="my-auto ml-auto pr-6">
                     <button type="button"
@@ -116,6 +63,60 @@
             </div>
         </div>
     </div>
+
+    <div class="flex flex-wrap -mx-3">
+        <div class="flex-none w-full max-w-full px-3">
+            <div
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <h6>Kategori table</h6>
+                </div>
+                <div class="flex-auto px-0 pt-0 pb-2">
+                    <div class="p-0 overflow-x-auto">
+                        <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                            <thead class="align-bottom">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Nama Kategori</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Skor</th>
+                                    <th
+                                        class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td
+                                            class="pl-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-size-xs text-slate-400">{{ $category->name }}</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-size-xs text-slate-400">{{ $category->score }}</span>
+                                        </td>
+                                        <th
+                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        </th>
+
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- card 2 -->
+
     <div id="showModal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="relative w-full h-full max-w-2xl md:h-auto">
@@ -124,7 +125,7 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Task Teknisi
+                        Laporan Teknisi per Hari
                     </h3>
                     <button type="button" id="closeModal"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"

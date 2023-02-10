@@ -21,8 +21,7 @@ class UserSeeder extends Seeder
             'nik' => 'admin',
             'password' => Hash::make('4dM!nB935'),
             'about' => "Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).",
-            'role' => 'admin',
+            'role' => 'Admin',
         ]);
-
     }
 }

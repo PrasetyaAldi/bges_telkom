@@ -1,6 +1,20 @@
 <div>
     <div class="flex flex-wrap -mx-3">
-
+        @if (session()->has('message'))
+            <div class="flex p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">{{ session('message') }}</span>
+                </div>
+            </div>
+        @endif
         <div class="flex-none w-full max-w-full px-3">
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
@@ -22,8 +36,8 @@
                             <thead class="align-bottom">
                                 <tr>
                                     <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        ID</th>
+                                        class="px-6 py-3 font-bold text-left uppercase bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        NIK</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Photo</th>
@@ -31,9 +45,7 @@
                                     <th
                                         class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Name</th>
-                                    <th
-                                        class="px-6 py-3 pl-2 font-bold text-left uppercase bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        NIK</th>
+
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-size-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Role</th>
@@ -50,12 +62,10 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td
-                                            class="pl-6 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-size-xs">
-                                                {{ $loop->iteration }}
+                                            class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <p class="mb-0 font-semibold leading-tight text-size-xs">{{ $user->nik }}
                                             </p>
                                         </td>
-
                                         <td
                                             class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <div class="flex px-4 py-1">
@@ -73,12 +83,6 @@
                                             </p>
                                         </td>
                                         <td
-                                            class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-size-xs">{{ $user->nik }}
-                                            </p>
-                                        </td>
-
-                                        <td
                                             class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 font-semibold leading-tight text-size-xs">{{ $user->role }}
                                             </p>
@@ -93,10 +97,10 @@
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 font-semibold leading-tight text-base">
-                                                <a href="#"><i class="fas fa-user-edit"
-                                                        aria-hidden="true"></i></a>
-                                                <a href="#"><i class="cursor-pointer fas fa-trash"
-                                                        aria-hidden="true"></i></a>
+                                                {{-- <a href="#"><i class="fas fa-user-edit"
+                                                        aria-hidden="true"></i></a> --}}
+                                                <a wire:click='destroy({{ $user->id }})'><i
+                                                        class="cursor-pointer fas fa-trash" aria-hidden="true"></i></a>
                                             </p>
                                         </td>
                                     </tr>
@@ -153,17 +157,16 @@
                             @error('nik')
                                 <p class="text-size-sm text-red-500">{{ $message }}</p>
                             @enderror
-                            <div class="min-h-6 mb-0.5 block pl-12">
-
-                                <input wire:model.defer="role"
-                                    class="mt-0.54 rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5-em relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right"
-                                    type="checkbox" id="role">
-                                <label
-                                    class="mb-2 ml-1 font-normal cursor-pointer select-none text-size-sm text-slate-700"
-                                    for="role">Teknisi</label>
-
-
-                            </div>
+                            <label for="role"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
+                                option</label>
+                            <select wire:model.defer='role' name='role' id="role"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Pilih Role</option>
+                                <option value="Helpdesk">Helpdesk</option>
+                                <option value="Teknisi">Teknisi</option>
+                                <option value="TeamLeader">Team Leader</option>
+                            </select>
                             <div class="text-center">
                                 <button type="submit"
                                     class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-size-xs ease-soft-in tracking-tight-soft bg-gradient-cyan hover:scale-102 hover:shadow-soft-xs active:opacity-85">Submit</button>

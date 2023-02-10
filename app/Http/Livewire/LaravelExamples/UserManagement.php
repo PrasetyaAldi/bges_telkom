@@ -32,10 +32,18 @@ class UserManagement extends Component
             'name' => $this->name,
             'nik' => $this->nik,
             'password' => Hash::make($this->nik),
-            'role' => $this->role ? 'Teknis' : 'Non Teknis',
+            'role' => $this->role,
         ]);
         session()->flash('message', 'User successfully created.');
         $this->resetInput();
+        return redirect()->to('/user-management');
+    }
+
+    public function destroy($user_id)
+    {
+        $user = User::find($user_id);
+        $user->delete();
+        session()->flash('message', 'User successfully deleted.');
         return redirect()->to('/user-management');
     }
 
@@ -47,7 +55,7 @@ class UserManagement extends Component
     public function mount()
     {
         $this->avatar = ['../assets/img/team-1.jpg', '../assets/img/team-2.jpg', '../assets/img/team-3.jpg', '../assets/img/team-4.jpg'];
-        $this->users = User::all()->except(auth()->user()->id);
+        $this->users = User::all();
     }
     /**
      * Reset Input

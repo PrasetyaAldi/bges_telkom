@@ -16,7 +16,8 @@ class Tables extends Component
     public $category;
     public $userCategory;
 
-    public function store(){
+    public function store()
+    {
         $this->validate([
             'karyawan' => 'required',
             'category' => 'required'
@@ -30,7 +31,8 @@ class Tables extends Component
         return redirect()->to('/tables');
     }
 
-    public function resetInput(){
+    public function resetInput()
+    {
         $this->karyawan = null;
         $this->kategori = null;
     }
@@ -38,8 +40,8 @@ class Tables extends Component
     public function mount()
     {
         $this->category = Category::all();
-        $this->user = User::where('role','Teknis')->get();
-        $this->userCategory = User::with(['category'])->whereHas('category', function($q){
+        $this->user = User::where('role', 'Teknisi')->get();
+        $this->userCategory = User::with(['category'])->whereHas('category', function ($q) {
             $q->whereDate('user_categories.created_at', Carbon::today());
         })->get();
     }
