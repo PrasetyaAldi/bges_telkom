@@ -22,7 +22,7 @@ class Login extends Component
         if (auth()->attempt(['nik' => $this->nik, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["nik" => $this->nik])->first();
             auth()->login($user, $this->remember_me);
-            if ($user->role !== 'Teknis')
+            if ($user->role !== 'Teknisi')
                 return redirect()->intended('/dashboard');
             else
                 return redirect()->intended('/karyawan');
