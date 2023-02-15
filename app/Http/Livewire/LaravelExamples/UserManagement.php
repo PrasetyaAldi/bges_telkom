@@ -15,7 +15,6 @@ class UserManagement extends Component
     public $confirmModal = false;
 
     public $users = [];
-    public $avatar;
 
     /**
      * Store a newly created resource in storage.
@@ -54,7 +53,6 @@ class UserManagement extends Component
 
     public function mount()
     {
-        $this->avatar = ['../assets/img/team-1.jpg', '../assets/img/team-2.jpg', '../assets/img/team-3.jpg', '../assets/img/team-4.jpg'];
         $this->users = User::all();
     }
     /**
@@ -70,7 +68,6 @@ class UserManagement extends Component
     {
         return view('livewire.laravel-examples.user-management', [
             'users' => $this->users,
-            'avatar' => $this->avatar,
         ]);
     }
 }

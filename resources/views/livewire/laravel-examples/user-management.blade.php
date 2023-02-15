@@ -70,7 +70,7 @@
                                             class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <div class="flex px-4 py-1">
                                                 <div class="flex flex-col justify-center">
-                                                    <img src={{ $avatar[array_rand($avatar)] }}
+                                                    <img src="../assets/img/avatar.jpg"
                                                         class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-size-sm h-9 w-9 rounded-xl"
                                                         alt="user1" />
                                                 </div>

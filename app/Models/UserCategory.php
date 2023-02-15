@@ -11,6 +11,7 @@ class UserCategory extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id'
+        'category_id',
+        'is_approved'
     ];
 }

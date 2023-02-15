@@ -45,6 +45,6 @@ class User extends Authenticatable
      */
     public function category()
     {
-        return $this->belongsToMany(Category::class, UserCategory::class, 'user_id', 'category_id')->withTimestamps();
+        return $this->belongsToMany(Category::class, UserCategory::class, 'user_id', 'category_id')->withPivot('id', 'is_approved')->withTimestamps();
     }
 }

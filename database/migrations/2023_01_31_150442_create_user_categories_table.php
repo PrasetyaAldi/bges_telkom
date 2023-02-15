@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
     }

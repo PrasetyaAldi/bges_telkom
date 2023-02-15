@@ -25,7 +25,8 @@ class Tables extends Component
 
         UserCategory::create([
             'user_id' => $this->karyawan,
-            'category_id' => $this->kategori
+            'category_id' => $this->kategori,
+            'is_approved' => true
         ]);
         $this->resetInput();
         return redirect()->to('/tables');
