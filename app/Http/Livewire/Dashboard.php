@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserCategory;
 use Carbon\Carbon;
 use Livewire\Component;
+use PDF;
 
 class Dashboard extends Component
 {
@@ -55,6 +56,23 @@ class Dashboard extends Component
         return redirect()->to('/dashboard');
     }
 
+    public function converToPDF()
+    {
+        $this->userCategory = User::with(['category' => function ($q) {
+            $q->where('user_categories.is_approved', true);
+        }])->whereHas('category', function ($q) {
+            $q->whereBetween('user_categories.created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
+        })->get();
+        return redirect()->to('/pdf-generator');
+
+        // $pdf = PDF::loadView('livewire.pdf', [
+        //     'userCategories' => $this->userCategory,
+        //     'startMonth' =>  Carbon::now()->startOfMonth()->format('d M Y'),
+        //     'endMonth' => Carbon::now()->endOfMonth()->format('d M Y'),
+        // ])->setpaper('a4', 'landscape');
+        // return $pdf->download('upload.pdf');
+    }
+
     public function render()
     {
         return view('livewire.dashboard', [
@@ -62,6 +80,9 @@ class Dashboard extends Component
             'userCategoriesDay' => $this->userCategoryDay,
             'userCategories' => $this->userCategory,
             'notApproved' => $this->notApproved,
+            'today' => Carbon::today()->format('d M Y'),
+            'startMonth' =>  Carbon::now()->startOfMonth()->format('d M Y'),
+            'endMonth' => Carbon::now()->endOfMonth()->format('d M Y'),
         ]);
     }
 }

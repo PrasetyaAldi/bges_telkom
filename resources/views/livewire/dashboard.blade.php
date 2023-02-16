@@ -51,7 +51,7 @@
                 <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
                     <div class="flex flex-wrap mt-0 -mx-3">
                         <div class="flex-none w-7/12 max-w-full px-3 mt-0 lg:w-1/2 lg:flex-none">
-                            <h6>Laporan Kerja Per Hari</h6>
+                            <h6 class="ml-1 font-semibold">Laporan Kerja Per Hari</h6> {{ $today }}
                             <p class="mb-0 leading-normal text-size-sm">
                                 <i class="fa fa-check text-cyan-500"></i>
                                 <span class="ml-1 font-semibold">{{ $userCategoriesDay->count() }} Teknisi</span>
@@ -194,14 +194,21 @@
             <div
                 class="border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                 <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                    <div class="flex flex-wrap mt-0 -mx-3">
-                        <div class="flex-none w-7/12 max-w-full px-3 mt-0 lg:w-1/2 lg:flex-none">
+                    <div class="flex flex-wrap justify-between mt-0 -mx-3">
+                        <div class="flex-none max-w-full px-3 mt-0">
                             <h6>Laporan Kerja per Bulan</h6>
+                            <span>
+                                {{ $startMonth }} - {{ $endMonth }}
+                            </span>
                             <p class="mb-0 leading-normal text-size-sm">
                                 <i class="fa fa-check text-cyan-500"></i>
                                 <span class="ml-1 font-semibold">{{ $userCategories->count() }} Teknisi</span>
                                 melaporkan
                             </p>
+                        </div>
+                        <div>
+                            <button type="button" wire:click="converToPDF"
+                                class="inline-block px-8 py-2 m-0 text-xs font-bold text-center text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer ease-soft-in leading-pro tracking-tight-soft bg-gradient-fuchsia shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85">pdf</button>
                         </div>
                     </div>
                 </div>

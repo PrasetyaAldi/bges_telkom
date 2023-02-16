@@ -17,6 +17,7 @@ use App\Http\Livewire\Rtl;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
+use App\Http\Livewire\PDFGenerator;
 use App\Http\Livewire\VirtualReality;
 use Illuminate\Http\Request;
 
@@ -55,4 +56,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-profile', UserProfile::class)->name('user-profile');
     Route::get('/user-management', UserManagement::class)->name('user-management');
     Route::get('/karyawan', Karyawan::class)->name('karyawan');
+    Route::get('/pdf-generator', PDFGenerator::class)->name('pdf-generator');
 });
